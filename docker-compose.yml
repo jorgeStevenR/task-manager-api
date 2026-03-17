@@ -19,9 +19,9 @@ services:
     depends_on:
       - rabbitmq
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres.ydioclfnezasxtlrilmn
-      SPRING_DATASOURCE_PASSWORD: task_manager_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/tu_db_local
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
 
       SPRING_RABBITMQ_HOST: rabbitmq-task-manager
       SPRING_RABBITMQ_PORT: 5672
