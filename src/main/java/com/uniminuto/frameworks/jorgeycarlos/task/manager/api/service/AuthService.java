@@ -4,5 +4,6 @@ import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.request.
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.response.LoginResponseDTO;
 
 public interface AuthService {
+
     LoginResponseDTO login(LoginRequestDTO request);
 }
