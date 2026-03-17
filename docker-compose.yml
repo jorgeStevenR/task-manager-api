@@ -2,20 +2,6 @@ version: '3.8'
 
 services:
 
-  postgres:
-    image: postgres:15
-    container_name: postgres-task-manager
-    restart: always
-    environment:
-      POSTGRES_DB: task_manager_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin123
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./docker/init-db:/docker-entrypoint-initdb.d
-
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq-task-manager
@@ -31,18 +17,13 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
       - rabbitmq
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/task_manager_db
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: admin123
+      SPRING_DATASOURCE_URL: jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres.ydioclfnezasxtlrilmn
+      SPRING_DATASOURCE_PASSWORD: task_manager_db
 
-      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_HOST: rabbitmq-task-manager
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: guest
       SPRING_RABBITMQ_PASSWORD: guest
-      
-
-volumes:
-  postgres_data:
