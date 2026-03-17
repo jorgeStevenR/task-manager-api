@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "subtarea")
 @Getter
@@ -23,12 +25,14 @@ public class Subtarea {
 
     private LocalDateTime fechaCreacion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tarea_id")
+    @JsonIgnore
     private Tarea tarea;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "responsable_id")
+    @JsonIgnore
     private Usuario responsable;
 
 }

@@ -30,7 +30,7 @@ public class Usuario {
     private LocalDateTime fechaCreacion;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "usuarioCreador")
+    @OneToMany(mappedBy = "usuarioCreador", fetch = FetchType.LAZY)
     private List<Tarea> tareasCreadas;
 
 }

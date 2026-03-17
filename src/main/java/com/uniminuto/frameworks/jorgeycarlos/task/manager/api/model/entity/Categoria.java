@@ -23,7 +23,7 @@ public class Categoria {
     private String color;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Tarea> tareas;
 
 }

@@ -21,7 +21,7 @@ public class Estado {
     private String nombre;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "estado")
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
     private List<Tarea> tareas;
 
 }

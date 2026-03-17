@@ -8,6 +8,6 @@ import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.entity.Usuar
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.entity.UsuarioTareaId;
 
 public interface UsuarioTareaRepository extends JpaRepository<UsuarioTarea, UsuarioTareaId> {
-    List<UsuarioTarea> findByUsuarioIdId(Long usuarioId);
-    List<UsuarioTarea> findByTareaIdId(Long tareaId);  
+    List<UsuarioTarea> findByUsuario_IdUsuario(Long idUsuario);
+    List<UsuarioTarea> findByTarea_IdTarea(Long idTarea);
 }

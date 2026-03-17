@@ -6,6 +6,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tarea")
 @Getter
@@ -28,22 +30,24 @@ public class Tarea {
 
     private String prioridad;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_creador")
     private Usuario usuarioCreador;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
-    @OneToMany(mappedBy = "tarea")
+    @JsonIgnore
+    @OneToMany(mappedBy = "tarea", fetch = FetchType.LAZY)
     private List<Subtarea> subtareas;
 
-    @OneToMany(mappedBy = "tarea")
+    @JsonIgnore
+    @OneToMany(mappedBy = "tarea", fetch = FetchType.LAZY)
     private List<Recordatorio> recordatorios;
 
 }
