@@ -32,14 +32,21 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 👈 IMPORTANTE
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
+
+                // 🔥 CLAVE: permitir preflight
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                // endpoints públicos
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+
+                // resto protegido
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
@@ -47,9 +54,9 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 👇 CONFIGURACIÓN CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(

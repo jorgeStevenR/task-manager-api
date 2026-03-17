@@ -11,7 +11,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private final String SECRET = "mi_clave_super_secreta_123456789123456";
-    private final long EXPIRATION = 1000 * 60 * 60;
+    private final long EXPIRATION = 1000 * 60 * 60; // 1 hora
 
     private Key getKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
@@ -42,7 +42,7 @@ public class JwtUtil {
                     .build()
                     .parseClaimsJws(token);
             return true;
-        } catch (Exception e) {
+        } catch (JwtException e) {
             return false;
         }
     }
