@@ -4,7 +4,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.request.LoginRequestDTO;
+import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.request.RegisterRequestDTO;
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.response.LoginResponseDTO;
+import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.entity.Usuario;
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.repository.UsuarioRepository;
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.security.JwtUtil;
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.service.AuthService;
@@ -27,13 +29,35 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResponseDTO login(LoginRequestDTO request) {
 
-        var usuario = usuarioRepository.findByEmail(request.getEmail())
+        Usuario usuario = usuarioRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         if (!passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
             throw new RuntimeException("Credenciales inválidas");
         }
 
+        String token = jwtUtil.generarToken(usuario.getEmail());
+
+        return new LoginResponseDTO(token);
+    }
+
+    @Override
+    public LoginResponseDTO register(RegisterRequestDTO request) {
+
+        // validar si ya existe
+        if (usuarioRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new RuntimeException("El usuario ya existe");
+        }
+
+        // crear usuario
+        Usuario usuario = new Usuario();
+        usuario.setNombre(request.getNombre());
+        usuario.setEmail(request.getEmail());
+        usuario.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        usuarioRepository.save(usuario);
+
+        // 🔐 generar token automático
         String token = jwtUtil.generarToken(usuario.getEmail());
 
         return new LoginResponseDTO(token);

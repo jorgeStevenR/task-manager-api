@@ -3,6 +3,7 @@ package com.uniminuto.frameworks.jorgeycarlos.task.manager.api.controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.request.LoginRequestDTO;
+import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.request.RegisterRequestDTO;
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.model.dto.response.LoginResponseDTO;
 import com.uniminuto.frameworks.jorgeycarlos.task.manager.api.service.AuthService;
 
@@ -18,8 +19,15 @@ public class AuthController {
         this.authService = authService;
     }
 
+    // LOGIN
     @PostMapping("/login")
     public LoginResponseDTO login(@Valid @RequestBody LoginRequestDTO request) {
         return authService.login(request);
+    }
+
+    // REGISTER
+    @PostMapping("/register")
+    public LoginResponseDTO register(@Valid @RequestBody RegisterRequestDTO request) {
+        return authService.register(request);
     }
 }
