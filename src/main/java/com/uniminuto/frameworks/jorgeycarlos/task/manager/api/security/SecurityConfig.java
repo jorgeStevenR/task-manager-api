@@ -39,14 +39,14 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
 
-                // 🔥 CLAVE: permitir preflight
+                // ✅ permitir preflight
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                // endpoints públicos
+                // públicos
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 
-                // resto protegido
+                // protegidos
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
@@ -59,10 +59,8 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of(
-            "http://localhost:4200",
-            "https://task-manager-front-hazel.vercel.app"
-        ));
+        // 🔥 SOLUCIÓN DEFINITIVA
+        config.setAllowedOriginPatterns(List.of("*"));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
