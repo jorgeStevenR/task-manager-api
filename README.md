@@ -14,14 +14,14 @@ https://task-manager-api-cc7s.onrender.com/api
 
 ## Características
 
-* 🔐 Autenticación con JWT
-* 👤 Gestión de usuarios
-* 📌 CRUD de tareas
-* ✅ Subtareas asociadas
-* ⏰ Recordatorios programados
-* 📨 Integración con RabbitMQ
-* ⏱️ Scheduler automático
-* 🧱 Arquitectura en capas (Controller, Service, Repository, DTO, Mapper)
+* Autenticación con JWT
+* Gestión de usuarios
+* CRUD de tareas
+* Subtareas asociadas
+* Recordatorios programados
+* Integración con RabbitMQ
+* Scheduler automático
+* Arquitectura en capas (Controller, Service, Repository, DTO, Mapper)
 
 ---
 
