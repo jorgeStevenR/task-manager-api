@@ -1,10 +1,10 @@
-# 🚀 Task Manager API
+# Task Manager API
 
 API REST desarrollada con **Spring Boot 3 + Java 21** para la gestión de tareas, subtareas, usuarios y recordatorios, con autenticación JWT y mensajería asíncrona usando RabbitMQ.
 
 ---
 
-## 🌐 URL Base
+## URL Base
 
 ```
 https://task-manager-api-cc7s.onrender.com/api
@@ -12,7 +12,7 @@ https://task-manager-api-cc7s.onrender.com/api
 
 ---
 
-## 🧠 Características
+## Características
 
 * 🔐 Autenticación con JWT
 * 👤 Gestión de usuarios
@@ -25,7 +25,7 @@ https://task-manager-api-cc7s.onrender.com/api
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 * Java 21
 * Spring Boot 3
@@ -37,9 +37,9 @@ https://task-manager-api-cc7s.onrender.com/api
 
 ---
 
-# 🔐 Autenticación
+# Autenticación
 
-## 📌 Login
+## Login
 
 **POST** `/auth/login`
 
@@ -62,7 +62,7 @@ https://task-manager-api-cc7s.onrender.com/api
 
 ---
 
-## 📌 Registro
+## Registro
 
 **POST** `/auth/register`
 
@@ -86,7 +86,7 @@ https://task-manager-api-cc7s.onrender.com/api
 
 ---
 
-## 🔑 Uso del token
+## Uso del token
 
 ```
 Authorization: Bearer TU_TOKEN
@@ -94,9 +94,9 @@ Authorization: Bearer TU_TOKEN
 
 ---
 
-# 👤 Usuarios
+# Usuarios
 
-## 📌 Crear usuario
+## Crear usuario
 
 **POST** `/usuarios`
 
@@ -111,27 +111,27 @@ Authorization: Bearer TU_TOKEN
 
 ---
 
-## 📌 Obtener usuario
+## Obtener usuario
 
 **GET** `/usuarios/{id}`
 
 ---
 
-## 📌 Listar usuarios
+## Listar usuarios
 
 **GET** `/usuarios`
 
 ---
 
-## 📌 Eliminar usuario
+## Eliminar usuario
 
 **DELETE** `/usuarios/{id}`
 
 ---
 
-# 📌 Tareas
+# Tareas
 
-## 📌 Crear tarea
+## Crear tarea
 
 **POST** `/tareas`
 
@@ -149,27 +149,27 @@ Authorization: Bearer TU_TOKEN
 
 ---
 
-## 📌 Obtener tarea
+## Obtener tarea
 
 **GET** `/tareas/{id}`
 
 ---
 
-## 📌 Listar tareas
+## Listar tareas
 
 **GET** `/tareas`
 
 ---
 
-## 📌 Eliminar tarea
+## Eliminar tarea
 
 **DELETE** `/tareas/{id}`
 
 ---
 
-# ✅ Subtareas
+# Subtareas
 
-## 📌 Crear subtarea
+## Crear subtarea
 
 **POST** `/subtareas`
 
@@ -183,21 +183,21 @@ Authorization: Bearer TU_TOKEN
 
 ---
 
-## 📌 Obtener subtareas por tarea
+## Obtener subtareas por tarea
 
 **GET** `/subtareas/tarea/{tareaId}`
 
 ---
 
-## 📌 Completar subtarea
+## Completar subtarea
 
 **PATCH** `/subtareas/{id}/completar`
 
 ---
 
-# ⏰ Recordatorios
+# Recordatorios
 
-## 📌 Crear recordatorio
+## Crear recordatorio
 
 **POST** `/recordatorios`
 
@@ -211,13 +211,13 @@ Authorization: Bearer TU_TOKEN
 
 ---
 
-## 📌 Obtener recordatorios pendientes
+## Obtener recordatorios pendientes
 
 **GET** `/recordatorios/pendientes`
 
 ---
 
-# 📨 RabbitMQ
+# RabbitMQ
 
 La aplicación envía mensajes automáticamente a la cola:
 
@@ -225,14 +225,14 @@ La aplicación envía mensajes automáticamente a la cola:
 recordatorio.queue
 ```
 
-### 📌 Se ejecuta cuando:
+### Se ejecuta cuando:
 
 * Se crea un recordatorio
 * El scheduler detecta recordatorios pendientes
 
 ---
 
-# ⏱️ Scheduler
+# Scheduler
 
 * Se ejecuta cada **60 segundos**
 * Busca recordatorios no enviados
@@ -240,7 +240,7 @@ recordatorio.queue
 
 ---
 
-# ⚙️ Variables de entorno
+# Variables de entorno
 
 ```env
 SPRING_DATASOURCE_URL=jdbc:postgresql://...
@@ -256,7 +256,7 @@ SPRING_RABBITMQ_VIRTUAL_HOST=...
 
 ---
 
-# ▶️ Ejecución local
+# Ejecución local
 
 ```bash
 mvn clean package
@@ -265,7 +265,7 @@ docker compose up --build
 
 ---
 
-# 📦 Estructura del proyecto
+# Estructura del proyecto
 
 ```
 controller/
@@ -282,7 +282,7 @@ scheduler/
 
 ---
 
-# 🚀 Mejoras futuras
+# Mejoras futuras
 
 * ✅ Paginación (`Pageable`)
 * ✅ Filtros por prioridad, estado y usuario
@@ -294,7 +294,7 @@ scheduler/
 
 ---
 
-# 🧑‍💻 Autor
+# Autor
 
 **Jorge Steven Rodríguez Vargas**
 Full Stack Developer
@@ -303,6 +303,6 @@ UNIMINUTO
 
 ---
 
-# 📄 Licencia
+# Licencia
 
 Uso académico y portafolio
