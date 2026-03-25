@@ -294,9 +294,10 @@ scheduler/
 
 ---
 
-# Autor
+# Autores
 
 **Jorge Steven Rodríguez Vargas**
+**Carlos Mario Rivero Hernandez**
 Full Stack Developer
 Java + Spring Boot + Angular
 UNIMINUTO
